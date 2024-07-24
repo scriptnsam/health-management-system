@@ -37,11 +37,11 @@ const Error = (response, statusCode, message) => {
  * `statusCode`, and `message`. It then returns a JSON response with the specified status code and
  * message.
  */
-const Success = (response, statusCode, message, others) => {
+const Success = (response, statusCode, message, data) => {
   return response.status(statusCode).json({
     error: false,
     message,
-    others
+    data
   });
 };
 
