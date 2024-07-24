@@ -1,10 +1,10 @@
 const router = require('express').Router();
 require('dotenv').config();
 
-const { signIn } = require('../../controllers/auth/signInController');
-const { signUp } = require('../../controllers/auth/signUpController');
+const { signIn: patientSignIn } = require('../../controllers/auth/signInController');
+const { signUp: patientSignUp } = require('../../controllers/auth/signUpController');
 
-router.post('/signup', signUp);
-router.post('/signin', signIn);
+router.post('/patient/signup', patientSignUp);
+router.post('/patient/signin', patientSignIn);
 
 module.exports = router;
