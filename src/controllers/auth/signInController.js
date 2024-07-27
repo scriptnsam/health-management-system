@@ -28,7 +28,7 @@ const signInController = async (req, res) => {
   if (!compareResult) return Error(res, 400, 'Invalid password');
 
   // login successful, generate jwt signed authorization token
-  const token = jwt.sign({ patientNo, patientId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const token = jwt.sign({ patientNo, patientId }, process.env.PATIENT_JWT_SECRET, { expiresIn: '1h' });
 
   return Success(res, 200, 'Sign in successful', { token });
 }
