@@ -7,7 +7,7 @@ const Admin = require('../../models/Admin');
 const adminSignIn = async (req, res) => {
   try {
     const schema = joi.object({
-      usename: joi.string().required(),
+      username: joi.string().required(),
       password: joi.string().required(),
     });
 
@@ -16,9 +16,9 @@ const adminSignIn = async (req, res) => {
       return Error(res, 400, error.details[0].message);
     }
 
-    const { usename, password } = req.body;
+    const { username, password } = req.body;
 
-    const admin = await Admin.findOne({ where: { usename } });
+    const admin = await Admin.findOne({ where: { username } });
 
     if (!admin) {
       return Error(res, 404, 'Admin not found');

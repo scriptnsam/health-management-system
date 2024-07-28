@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database');
 
-const Admin = sequelize.schema({
+const Admin = sequelize.define('Admin', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -13,7 +13,7 @@ const Admin = sequelize.schema({
     unique: true,
     defaultValue: DataTypes.UUIDV4
   },
-  userbame: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false
   },
