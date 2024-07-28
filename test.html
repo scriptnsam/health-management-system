@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Document</title>
+</head>
+<body>
+  <button onclick="fetchTest()">Get Test</button>
+
+  <script>
+  const fetchTest=()=>{
+    var raw = "{\r\n    \"address\":\"123 Main street. CL Close. NY\"\r\n}";
+
+    var requestOptions = {
+      method: 'PUT',
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://health-management-system.onrender.com/api/admin/patient/update/86cfb680-c76f-489c-88df-838ec4c03932", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(JSON.parse(result)))
+      .catch(error => console.log('error', error));
+    }
+
+  </script>
+</body>
+</html>
