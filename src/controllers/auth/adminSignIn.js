@@ -30,7 +30,7 @@ const adminSignIn = async (req, res) => {
       return Error(res, 400, 'Invalid credentials');
     }
 
-    const token = jwt.sign({ id: admin.adminId }, process.env.ADMIN_JWT_SECRET, {
+    const token = jwt.sign({ id: admin.adminId, role: 'admin' }, process.env.ADMIN_JWT_SECRET, {
       expiresIn: '1d',
     });
 
