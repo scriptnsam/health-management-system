@@ -1,9 +1,9 @@
 const joi = require('joi');
-const { Error, Success } = require('../../utils/response');
-const { hashPassword } = require("../../utils/hashPasword");
-const { Doctor, generateDoctorNo } = require('../../models/Doctor');
+const { Error, Success } = require('../../../utils/response');
+const { hashPassword } = require("../../../utils/hashPasword");
+const { Doctor, generateDoctorNo } = require('../../../models/Doctor');
 
-const doctorSignUp = async (req, res) => {
+const addDoctor = async (req, res) => {
   try {
     const schema = joi.object({
       name: joi.string().required(),
@@ -44,4 +44,4 @@ const doctorSignUp = async (req, res) => {
   }
 }
 
-module.exports = doctorSignUp;
+module.exports = addDoctor;
