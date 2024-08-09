@@ -5,7 +5,7 @@ const { Doctor } = require("../../models/Doctor");
 const { validate } = require('uuid');
 
 // Schedule appoinments controller
-const scheduleAppoinments = async (req, res) => {
+const scheduleAppointments = async (req, res) => {
   // Logic to schedule appoinments
   const { patientId } = req.patient;
 
@@ -44,10 +44,19 @@ const scheduleAppoinments = async (req, res) => {
 
 }
 
-const getAppoinments = (req, res) => {
+const getAppointments = async (req, res) => {
   // Logic to get appoinments
+  const { patientId } = req.patient;
+
+  try {
+    const appointments = await Appoinment.findAll({ where: { patientId } })
+    if (!appointments) return Error(res, 400, 'No appointments found');
+    return Success(res, 200, 'Appointment(s) Found', { appointments })
+  } catch (error) {
+    return Error(res, 500, error.message)
+  }
 }
 
 module.exports = {
-  scheduleAppoinments
+  scheduleAppointments, getAppointments
 }
