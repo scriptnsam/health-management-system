@@ -1,0 +1,12 @@
+name: Ping Render Service
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send ping to Render service
+        run: curl -s --request GET https://health-management-system.onrender.com
