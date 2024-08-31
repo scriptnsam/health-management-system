@@ -18,7 +18,7 @@ router.post('/doctor/add', adminMiddleware, addDoctor);
 router.delete('/doctor/delete/:doctorNo', adminMiddleware, deleteDoctor)
 router.put('/doctor/update/:id', adminMiddleware, updateDoctor)
 
-// doctor routes
+// patient routes
 router.delete('/patient/delete/:patientNo', adminMiddleware, deletePatient)
 router.put('/patient/update/:id', adminMiddleware, updatePatient)
 

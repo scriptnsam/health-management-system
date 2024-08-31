@@ -39,6 +39,7 @@ const scheduleAppointments = async (req, res) => {
     }
     return Success(res, 200, "Appointment scheduled")
   } catch (error) {
+    console.error(error)
     return Error(res, 500, error.message)
   }
 

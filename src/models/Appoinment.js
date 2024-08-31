@@ -23,12 +23,10 @@ const Appoinment = sequelize.define('Appoinment', {
     type: DataTypes.UUID,
     allowNull: false,
     defaultValue: DataTypes.UUIDV4,
-    unique: true
   },
   patientId: {
     type: DataTypes.UUID,
     allowNull: false,
-    unique: true
   },
   appointmentStatus: {
     type: DataTypes.ENUM('Active', 'Cancelled', 'Completed'),
