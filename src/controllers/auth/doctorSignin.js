@@ -7,7 +7,7 @@ const DoctorLogs = require('../../models/doctorLogs');
 
 const doctorSignIn = async (req, res) => {
   const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-  console.log('IP Address:', ipAddress);
+
   try {
     const schema = joi.object({
       email: joi.string().email().required(),
