@@ -3,7 +3,7 @@ const { Error, Success } = require('../../utils/response');
 const { comparePassword } = require('../../utils/hashPasword');
 const jwt = require('jsonwebtoken');
 const { Doctor } = require('../../models/Doctor');
-const DoctorLogs = require('../../models/doctorLogs');
+const DoctorLogs = require('../../models/DoctorLogs');
 
 const doctorSignIn = async (req, res) => {
   const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
