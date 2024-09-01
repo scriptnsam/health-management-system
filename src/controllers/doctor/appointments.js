@@ -29,7 +29,37 @@ const viewAppointmentsHistory = async (req, res) => {
   }
 }
 
+const cancelAppointment = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const appointment = await Appoinment.findByPk(id);
+    if (!appointment) {
+      return Error(res, 404, 'Appointment not found')
+    }
+    appointment.appointmentStatus = 'Cancelled';
+    await appointment.save();
+    return Success(res, 200, 'Appointment cancelled successfully')
+  } catch (error) {
+    return Error(res, 500, error.message)
+  }
+}
+
+const completeAppointment = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const appointment = await Appoinment.findByPk(id);
+    if (!appointment) {
+      return Error(res, 404, 'Appointment not found')
+    }
+    appointment.appointmentStatus = 'Completed';
+    await appointment.save();
+    return Success(res, 200, 'Appointment completed successfully')
+  } catch (error) {
+    return Error(res, 500, error.message)
+  }
+}
+
 
 module.exports = {
-  viewAppointments, viewAppointmentsHistory
+  viewAppointments, viewAppointmentsHistory, cancelAppointment, completeAppointment
 }

@@ -3,8 +3,11 @@ const { Error, Success } = require('../../utils/response');
 const { comparePassword } = require('../../utils/hashPasword');
 const jwt = require('jsonwebtoken');
 const { Doctor } = require('../../models/Doctor');
+const DoctorLogs = require('../../models/doctorLogs');
 
 const doctorSignIn = async (req, res) => {
+  const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  console.log('IP Address:', ipAddress);
   try {
     const schema = joi.object({
       email: joi.string().email().required(),
@@ -32,6 +35,13 @@ const doctorSignIn = async (req, res) => {
 
     const token = jwt.sign({ id: doctor.doctorId }, process.env.DOCTOR_JWT_SECRET, {
       expiresIn: '1d',
+    });
+
+    // log doctor login details
+    await DoctorLogs.create({
+      doctorId: doctor.doctorId,
+      ipAddress: ipAddress,
+      loginTime: new Date()
     });
 
     return Success(res, 200, 'Doctor signed in successfully', { token });
