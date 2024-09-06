@@ -26,7 +26,6 @@ const adminSignIn = async (req, res) => {
 
     const isMatch = await comparePassword(password, admin.password);
 
-    console.log("Is MATCH:", isMatch);
 
     if (!isMatch) {
       return Error(res, 400, 'Invalid credentials');

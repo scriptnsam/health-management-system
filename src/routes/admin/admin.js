@@ -2,6 +2,7 @@ const addDoctor = require('../../controllers/Admin/doctor/addDoctor');
 const deleteDoctor = require('../../controllers/Admin/doctor/deleteDoctor');
 const updateDoctor = require('../../controllers/Admin/doctor/updateDoctor');
 const deletePatient = require('../../controllers/Admin/patient/deletePatient');
+const getPatients = require('../../controllers/Admin/patient/getPatient');
 const updatePatient = require('../../controllers/Admin/patient/updatePatient');
 const adminSignIn = require('../../controllers/auth/adminSignIn');
 const adminSignup = require('../../controllers/auth/adminSignup');
@@ -19,6 +20,7 @@ router.delete('/doctor/delete/:doctorNo', adminMiddleware, deleteDoctor)
 router.put('/doctor/update/:id', adminMiddleware, updateDoctor)
 
 // patient routes
+router.get('/patients', adminMiddleware, getPatients)
 router.delete('/patient/delete/:patientNo', adminMiddleware, deletePatient)
 router.put('/patient/update/:id', adminMiddleware, updatePatient)
 
