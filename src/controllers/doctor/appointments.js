@@ -1,11 +1,14 @@
 const Appoinment = require("../../models/Appoinment");
+const { Patient } = require("../../models/Patient");
 const { Error, Success } = require("../../utils/response");
 
 const viewAppointments = async (req, res) => {
   try {
-    const appointments = await Appoinment.findAll({ where: { doctorId: req.doctor.id, appointmentStatus: 'Active' } });
-    if (appointments.length == 0) {
-      return Success(res, 404, 'No appointment found')
+    const appointments = await Appoinment.findAll({
+      where: { doctorId: req.doctor.id, appointmentStatus: 'Active' }
+    });
+    if (appointments.length === 0) {
+      return Success(res, 200, 'No appointment found')
     }
 
     return Success(res, 200, 'Appointment(s) Found', { appointments })
@@ -17,9 +20,15 @@ const viewAppointments = async (req, res) => {
 
 const viewAppointmentsHistory = async (req, res) => {
   try {
-    const appointments = await Appoinment.findAll({ where: { doctorId: req.doctor.id } });
-    if (appointments.length == 0) {
-      return Success(res, 404, 'No appointment found')
+    const appointments = await Appoinment.findAll({
+      where: { doctorId: req.doctor.id },
+      include: [{
+        model: Patient,
+        attributes: ['fullName', 'address', 'gender'],
+      }]
+    });
+    if (appointments.length === 0) {
+      return Success(res, 200, 'No appointment found')
     }
 
     return Success(res, 200, 'Appointment(s) Found', { appointments })

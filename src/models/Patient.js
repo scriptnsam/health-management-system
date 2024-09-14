@@ -11,7 +11,7 @@ const Patient = sequelize.define('Patient', {
     type: DataTypes.UUID,
     allowNull: false,
     defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+    unique: true
   },
   patientNo: {
     type: DataTypes.INTEGER,

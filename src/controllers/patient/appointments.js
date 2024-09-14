@@ -50,7 +50,13 @@ const getAppointments = async (req, res) => {
   const { patientId } = req.patient;
 
   try {
-    const appointments = await Appoinment.findAll({ where: { patientId } })
+    const appointments = await Appoinment.findAll({
+      where: { patientId },
+      include: [{
+        model: Doctor,
+        attributes: ['fullName', 'specialization']
+      }]
+    })
     if (!appointments) return Error(res, 400, 'No appointments found');
     return Success(res, 200, 'Appointment(s) Found', { appointments })
   } catch (error) {
